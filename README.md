@@ -5,6 +5,8 @@ In addition to this it will feature a database for Movies, Games and Books.
 
 It uses Python-Flask's tutorial [Flaskr](https://flask.palletsprojects.com/en/3.0.x/tutorial/) as a starting point.
 
+![Readme Image](readme_image.png)
+
 ## Create a Python Virtual Environment
 
 ```
