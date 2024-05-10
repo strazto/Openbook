@@ -10,7 +10,7 @@ It uses Python-Flask's tutorial [Flaskr](https://flask.palletsprojects.com/en/3.
 ## Create a Python Virtual Environment
 
 ```
-python3 -m venv .venv
+$ python3 -m venv .venv
 ```
 
 ## Activate the Python Virtual Environment

@@ -8,7 +8,10 @@ from openbook.db import get_db
 
 bp = Blueprint('blog', __name__)
 
-@bp.route('/')
+# if g.user:
+
+@bp.route('/blog')
+@login_required
 def index():
     db = get_db()
     posts = db.execute(
@@ -16,15 +19,15 @@ def index():
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    # return str(posts[0])
+    
     return render_template('blog/index.html', posts=posts)
 
-@bp.route('/create', methods=('GET', 'POST'))
+@bp.route('/blog/create', methods=('GET', 'POST'))
 @login_required
 def create():
     if request.method == 'POST':
         title = request.form['title']
-        body = request.form['body']
+        body  = request.form['body']
         error = None
 
         if not title:
@@ -44,16 +47,10 @@ def create():
 
     return render_template('blog/create.html')
 
-@bp.route('/post/<int:id>')
+@bp.route('/blog/post/<int:id>')
 def post(id):
-    db = get_db()
-    posts = db.execute(
-        'SELECT p.id, title, body, created, author_id, username'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
-        ' ORDER BY created DESC'
-    ).fetchall()
-    # posts = posts[id]
-    return str(posts)
+    posts = [get_post(id, check_author=False)]
+    
     return render_template('blog/index.html', posts=posts)
 
 def get_post(id, check_author=True):
@@ -72,7 +69,7 @@ def get_post(id, check_author=True):
 
     return post
 
-@bp.route('/<int:id>/update', methods=('GET', 'POST'))
+@bp.route('/blog/update/<int:id>', methods=('GET', 'POST'))
 @login_required
 def update(id):
     post = get_post(id)
@@ -99,12 +96,12 @@ def update(id):
 
     return render_template('blog/update.html', post=post)
 
-@bp.route('/<int:id>/delete', methods=('POST',))
-@login_required
-def delete(id):
-    get_post(id)
-    db = get_db()
-    # Turn Invisible
-    db.execute('DELETE FROM post WHERE id = ?', (id,))
-    db.commit()
-    return redirect(url_for('blog.index'))
+# @bp.route('/blog/delete/<int:id>', methods=('POST',))
+# @login_required
+# def delete(id):
+#     get_post(id)
+#     db = get_db()
+#     # Turn Invisible
+#     db.execute('DELETE FROM post WHERE id = ?', (id,))
+#     db.commit()
+#     return redirect(url_for('blog.index'))

@@ -1,0 +1,7 @@
+localhost
+
+encode zstd gzip
+reverse_proxy localhost:5000
+
+# templates
+# file_server browse

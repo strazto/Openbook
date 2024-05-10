@@ -16,4 +16,5 @@ build/
 pyproject.toml
 note.md
 todo.md
+todo2.md
 makefile
