@@ -1,7 +1,10 @@
-localhost
+# localhost
+damian-siderides.com
 
 encode zstd gzip
 reverse_proxy localhost:5000
+
+try_files {path}.html {path}
 
 # templates
 # file_server browse
