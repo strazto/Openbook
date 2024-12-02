@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}League{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<br>
+
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Username</th>
+		</tr>
+		
+		{% for user in users %}
+			
+		<tr>
+			<td>{{ user['id'] }}</td>
+			<td>{{ user['username'] }}</td>
+		</tr>
+
+		{% endfor %}
+
+	</table>
+
+{% endblock %}

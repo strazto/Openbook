@@ -146,6 +146,11 @@ input[type=submit] {
   min-width: 10em;
 }
 
+.comment {
+  border: 1px solid lightgray;
+  padding: 3px;
+}
+
 .author, .date {
   /*font-weight: bold;*/
   /*color: #377ba8;*/
@@ -180,4 +185,12 @@ input[type=submit] {
   float:left;
   background: lightgrey;
   margin-bottom: 20px
+}
+
+#c {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F465887.jpg&f=1&nofb=1&ipt=9c9f7ff0b55693894d7ecbbafc758f1286859111ec12adb3c75ae28a66ddda69&ipo=images) no-repeat center center;
+  background-size: cover;
 }

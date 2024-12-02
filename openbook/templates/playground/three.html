@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Three JS{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<br>
+  <body>
+    <canvas id="c"></canvas>
+  </body>
+
+<script type="importmap">
+{
+	"imports": {
+		"three": "https://threejs.org/build/three.module.js",
+		"three/addons/": "https://threejs.org/examples/jsm/"
+	}
+}
+</script>
+
+<script type="module" src="./index2.js"></script>
+
+{% endblock %}
+
+<!-- https://github.com/tamani-coding/threejs-raycasting/blob/main/src/index.ts -->

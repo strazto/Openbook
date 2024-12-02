@@ -5,13 +5,51 @@
 {% endblock %}
 
 {% block content %}
+
   <form method="post">
     <label for="title">Title</label>
     <input name="title" id="title"
       value="{{ request.form['title'] or post['title'] }}" required>
+
+      <div class="tag">Existing Tags: 
+        <br>
+        {% for tag in tag_list%}
+          <a href="">{{ tag['title'] }}</a>
+          <!-- <button>Remove</button> -->
+          <br>
+        {% endfor %}
+      </div>
+
+    <p></p>
+
+    <label for="tag">Add a Tag</label>
+    <!-- <select name="tag" id="tag" multiple> -->
+    <select name="tag" id="tag">
+      <option></option>
+      
+      <!-- I don't know why this works, or how request.form works, investigate later -->
+      {% for tag in tags %}
+        <!-- <option value="{{ request.form['tag'] }}">{{ tag['title'] }}</option> -->
+        <option value="{{ tag['id'] }}">{{ tag['title'] }}</option>
+      {% endfor %}
+
+    </select>
+
+    <p></p>
+
+<!--   <form method="post">
+    <label for="tag">Tag</label>
+    <input name="tag" id="tag" value="{{ request.form['tag'] }}" required placeholder="Add a tag ...">
+    <input type="submit" value="Add">
+  </form> -->
+
     <label for="body">Body</label>
     <textarea name="body" id="body" rows="30" autofocus>{{ request.form['body'] or post['body'] }}</textarea>
     <input type="submit" value="Save">
+
+    <label for="favcolor">Select your favorite color:</label>
+    <input type="color" id="favcolor" name="favcolor">
+
   </form>
  <!-- <hr> -->
   <!-- <form action="{# {{ # url_for('blog.delete', id=post['id'])  }} #}" method="post">

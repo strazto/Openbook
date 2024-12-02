@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %} {{ g.user['username'] }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+	<br>
+
+	{% for x in g.user.keys() %}
+
+		{{ g.user[x] }}
+
+		<br>
+
+	{% endfor %}
+
+	<ul>
+		<li>Username</li>
+		<li>Display Name</li>
+		<br>
+		<li>Display Picture</li>
+		<li>email address</li>
+	</ul>
+		<h3>Change Password</h3>
+	<ul>
+		<li>Change Password here</li>
+	</ul>
+		<h3>Change Display Name</h3>
+	<ul>
+		<li>Change Display Name here</li>
+		<li>Username</li>
+		<li>Username</li>
+		<li>Username</li>
+		<li>Username</li>
+		<li>Username</li>
+		<li>Username</li>
+		<li>Username</li>
+	</ul>
+
+{% endblock %}

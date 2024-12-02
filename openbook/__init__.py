@@ -51,6 +51,15 @@ def create_app(test_config=None):
     from . import games
     app.register_blueprint(games.bp)
 
+    from . import user
+    app.register_blueprint(user.bp)
+
+    from . import playground
+    app.register_blueprint(playground.bp)
+
+    from . import league
+    app.register_blueprint(league.bp)
+
     # from . import movies
     # app.register_blueprint(movies.bp)
 
