@@ -78,7 +78,7 @@ def index(id = None, filter = None):
         listofcomments[i] = db.execute(f'select c.id, c.body, c.created, c.author_id, post_id, username from comment c join user u on c.author_id = u.id where post_id is {i}').fetchall()
         tag_list[i] = db.execute(f'select title from post_tag join tag on tag_id = tag.id where post_id is {i}').fetchall()
 
-    tags = db.execute('SELECT title FROM tag ORDER BY created ASC').fetchall()
+    tags = db.execute('SELECT title FROM tag ORDER BY title ASC').fetchall()
 
     return render_template('blog/index.html', posts=posts, listofcomments=listofcomments, tags=tags, tag_list=tag_list)
 
