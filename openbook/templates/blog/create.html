@@ -1,15 +1,64 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}New Post{% endblock %}</h1>
+  <h1>
+  	{% block title %}
+  		{% if post %}
+  			Edit '{{ post['title'] }}'
+  		{% else %}
+  			New Post
+  		{% endif %}
+  	{% endblock %}
+  </h1>
 {% endblock %}
 
 {% block content %}
   <form method="post">
     <label for="title">Title</label>
-    <input name="title" id="title" value="{{ request.form['title'] }}" required autofocus>
+    <input name="title" id="title" class="input-field" value="{{ request.form['title'] or post['title']}}" required autofocus>
+    
+    <div class="tag">Existing Tags: 
+      <br>
+        {% if tag_list %}
+          {% for tag in tag_list %}
+            
+            <a href="{{ url_for('blog.index', filter=tag['title'] ) }}">
+              <button class="tag-button">{{ tag['title'] }}</button>
+            </a>
+            -
+            <button title="Remove Tag" class="tag-remove-button">X</button>
+            <br>
+            
+          {% endfor %}
+
+        {% endif %}
+    </div>
+
+    <pre></pre>
+
+    <label for="tag">Add a Tag</label>
+    <!-- <select name="tag" id="tag" multiple> -->
+    <select name="tag" id="tag" class="select-field">
+      <option></option>
+      
+      <!-- I don't know why this works, or how request.form works, investigate later -->
+
+      {% for tag in tags %}
+        <!-- <option value="{{ request.form['tag'] }}">{{ tag['title'] }}</option> -->
+        <option value="{{ tag['id'] }}">{{ tag['title'] }}</option>
+      {% endfor %}
+
+
+    </select>
+
+    <pre></pre>
+
     <label for="body">Body</label>
-    <textarea name="body" id="body" rows="30">{{ request.form['body'] }}</textarea>
+    <textarea name="body" id="body" class="input-field-body" rows="30">{{ request.form['body'] or post['body']}}</textarea>
     <input type="submit" value="Save">
+
+    <pre></pre>
+    <label for="favcolor">Select your favorite color:</label>
+    <input type="color" id="favcolor" name="favcolor">
   </form>
 {% endblock %}

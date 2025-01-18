@@ -14,7 +14,13 @@ build/
 *.egg-info/
 
 pyproject.toml
-note.md
-todo.md
-todo2.md
+Caddyfile
+rsync.sh
+start.sh
 makefile
+
+notes/
+
+openbook/static/other_sites/
+openbook/templates/other_sites/
+ZZZ\ Old/

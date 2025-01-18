@@ -48,8 +48,8 @@ def create_app(test_config=None):
 
     # app.add_url_rule('/', endpoint='index')
 
-    from . import games
-    app.register_blueprint(games.bp)
+    # from . import games
+    # app.register_blueprint(games.bp)
 
     from . import user
     app.register_blueprint(user.bp)

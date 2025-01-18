@@ -1,5 +1,6 @@
 html {
   font-family: sans-serif;
+  /*font-family: monospace;*/
   background: #eee;
   padding: 1rem;
 }
@@ -8,6 +9,7 @@ body {
   max-width: 960px;
   margin: 0 auto;
   /*float: left;*/
+  font-size: 20px;
   background: white;
 }
 
@@ -15,6 +17,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: serif;
   color: #377ba8;
   margin: 1rem 0;
+}
+
+p {
+  margin: 0;
 }
 
 a {
@@ -58,6 +64,44 @@ nav ul  {
 nav ul li a, nav ul li span, header .action {
   display: block;
   padding: 0.5rem;
+}
+
+.tag-button {
+  font-size: 20px;
+  /*
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+*/
+  margin: 10px 5px;
+  padding: 8px 12px;
+  color: #377ba8;
+}
+
+.tag-remove-button {
+  font-size: 20px;
+  margin: 10px 5px;
+  padding: 8px 12px;
+  color: #fc0202;
+}
+
+.input-field {
+  /*width: 500px;*/
+  height: 50px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.select-field {
+  height: 50px;
+  font-size: 20px;
+}
+
+.input-field-body {
+  /*width: 500px;*/
+  height: 300px;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .content {
@@ -104,9 +148,11 @@ nav ul li a, nav ul li span, header .action {
 }
 
 .post .body {
-  white-space: pre-line;
+  /*white-space: pre-line;*/
+  white-space: pre-wrap;
 /*  border: 1px solid lightgray;
   padding-left: 1.5em;*/
+  font-family: monospace;
 }
 
 /*.post .body :is(h1, h2, h3, h4, h5, h6) {
@@ -129,11 +175,12 @@ nav ul li a, nav ul li span, header .action {
 }
 
 .content input, .content textarea {
-  margin-bottom: 1em;
+  /*margin-bottom: 1em;*/
 }
 
 .content textarea {
-  min-height: 12em;
+  /*min-height: 12em;*/
+  min-height: 150px;
   resize: vertical;
 }
 
@@ -144,6 +191,8 @@ input.danger {
 input[type=submit] {
   align-self: start;
   min-width: 10em;
+  height: 40px;
+  font-size: 20px;
 }
 
 .comment {

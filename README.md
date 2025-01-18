@@ -8,28 +8,26 @@ It uses Python-Flask's tutorial [Flaskr](https://flask.palletsprojects.com/en/3.
 ![Readme Image](readme_image.png)
 
 ## Create a Python Virtual Environment
-
 ```
-$ python3 -m venv .venv
+python3 -m venv .venv
 ```
 
 ## Activate the Python Virtual Environment
+```
+. .venv/bin/activate
+```
 
-```
-$ . .venv/bin/activate
-```
 ## Install Flask
+```
+pip install Flask
+```
 
-```
-$ pip install Flask
-```
 ## Initialise the Database 
+```
+flask --app openbook init-db
+```
 
-```
-$ flask --app openbook init-db
-```
 ## Run the App
-
 ```
-$ flask --app openbook run --debug
+flask --app openbook run --debug
 ```

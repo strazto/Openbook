@@ -10,21 +10,31 @@
 
 {% block content %}
 
-  <h1>Tags</h1>
+  {% if tags|length > 1 %}
+    <h1>Tags</h1>
 
-  <hr>
+    <hr>
 
-  {% for tag in tags %}
+    {% for tag in tags %}
 
-  <a href="{{ url_for('blog.filter', filter=tag['title'] ) }}">{{ tag['title'] }}</a><br>
-
-  {% endfor %}
+      <a href="{{ url_for('blog.index', filter=tag['title'] ) }}">
+        <button class="tag-button">
+          {{ tag['title'] }}
+        </button>
+      </a>
+      <!-- <br> -->
+      
+    {% endfor %}
+    <hr>
+  {% endif %}
 
   <form method="post">
     <label for="tag">Tag</label>
-    <input name="tag" id="tag" value="{{ request.form['tag'] }}" required placeholder="Add a tag ...">
+    <input name="tag" id="tag" class="input-field" value="{{ request.form['tag'] }}" required placeholder="Add a tag ...">
     <input type="submit" value="Add">
   </form>
+
+  <hr>
 
   <!-- <form method="post">
     <label for="title">Title</label>
@@ -38,19 +48,24 @@
     <article class="post">
       <header>
         <div>
-          <h1><a id="{{ post['title'] }}" class="" href="{{ url_for('blog.post', id=post['id']) }}">{{ post['title'] }}</a></h1>
-          <div class="about">by <span class="author"> {{ post['username'] }} </span> on <span class="date"> {{ post['created'].strftime('%c') }} </span></div>
+          <h1><a id="{{ post['title'] }}" class="" href="{{ url_for('blog.index', id=post['id']) }}">{{ post['title'] }}</a></h1>
+          <div class="about">by <span class="author"> <a href="{{ url_for('user.me') }}" >{{ post['username'] }}</a></span> on <span class="date"> {{ post['created'].strftime('%c') }} </span></div>
           <br>
           <div class="tag">tags: 
             {% for tag in tag_list[post['id']] %}
-              <a href="">{{ tag['title'] }}</a>
+              <a href="{{ url_for('blog.index', filter=tag['title'] ) }}">
+                <button class="tag-button">
+                  {{ tag['title'] }}
+                </button>
+              </a>
             {% endfor %}
           </div>
         </div>
         {% if g.user['id'] == post['author_id'] %}
-          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+          <a class="action" href="{{ url_for('blog.create', id=post['id']) }}">Edit</a>
         {% endif %}
       </header>
+      <br>
       <p class="body">{{ post['body'] }}</p>
     </article>
     <div>
@@ -68,7 +83,7 @@
       
       <form method="post">
         <input name="post_id" id="post_id" value="{{ post['id'] }}" hidden>
-        <textarea name="comment" id="comment" rows="2" placeholder="Write a comment ...">{{ request.form['comment'] }}</textarea>
+        <textarea name="comment" id="comment" class="input-field" rows="3" placeholder="Write a comment ...">{{ request.form['comment'] }}</textarea>
         <input type="submit" value="Submit">
       </form>
      
@@ -84,9 +99,7 @@
 <div id="sidepanel">
    <div class="sidepanel01">
      {% for post in posts %}
-        <!-- {% if loop.length > 1 %} -->
-          <div><a href="#{{ post['title'] }}">{{ post['title'] }}</a></div><br>
-        <!-- {% endif %} -->
+        <div><a href="#{{ post['title'] }}">{{ post['title'] }}</a></div><br>
      {% endfor %}
    </div>
 </div>
