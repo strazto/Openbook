@@ -90,6 +90,15 @@ CREATE TABLE comment (
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
 
+CREATE TABLE weight (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  weight REAL NOT NULL,
+  comment TEXT,
+  FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
 -- CREATE TABLE note (
 --   id INTEGER PRIMARY KEY AUTOINCREMENT,
 --   author_id INTEGER NOT NULL,

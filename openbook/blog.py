@@ -63,7 +63,7 @@ def index(id = None, filter = None):
     posts = None
 
     if filter:
-        posts = db.execute(f'select post.created, post.title, post.id, post.body, user.username from tag join post_tag on tag.id = tag_id join post on post.id = post_id join user on user.id = post.author_id where tag.title is "{filter}"').fetchall()
+        posts = db.execute(f'select post.created, post.title, post.id, post.body, user.username from tag join post_tag on tag.id = tag_id join post on post.id = post_id join user on user.id = post.author_id where tag.title is "{filter}" ORDER BY post.created DESC').fetchall()
     elif id:
         posts = [get_post(id, check_author=False)]
     else:

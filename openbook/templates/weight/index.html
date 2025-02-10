@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1><a href="{{ url_for ('weight.index') }}">{% block title %}Weights{% endblock %}</a></h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('weight.new') }}">New</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+  
+  <center>
+    <img src="{{ url_for('static', filename='weights.png') }}" alt="Weight Graph" width="800" height="600"> 
+  </center>
+  
+  <hr>
+
+  {% for weight in weights %}
+    <article class="post">
+      <header>
+        <div>
+          <h1><a id="{{ weight['title'] }}" class="" href="{{ url_for('weight.index', id=weight['id']) }}">{{ weight['weight'] }}</a></h1>
+          <div class="about">by <span class="author"> <a href="{# {{  url_for('user.me')  }} #}" >{{ weight['username'] }}</a></span> on <span class="date"> {{ weight['created'].strftime('%c') }} </span></div>
+          <br>
+        </div>
+        {% if g.user['id'] == weight['author_id'] %}
+          <a class="action" href="{{ url_for('weight.new', id=weight['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+      <br>
+      <p class="body">{{ weight['comment'] }}</p>
+    </article>
+
+    </div>
+
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+
+{% endblock %}
+
+

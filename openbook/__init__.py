@@ -66,6 +66,9 @@ def create_app(test_config=None):
     # from . import books
     # app.register_blueprint(books.bp)
 
+    from . import weight
+    app.register_blueprint(weight.bp)
+
     app.wsgi_app = ProxyFix(
         app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
     )

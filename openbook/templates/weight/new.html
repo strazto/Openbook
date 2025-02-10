@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>
+  	{% block title %}
+  		{% if post %}
+  			Edit '{{ post['title'] }}'
+  		{% else %}
+  			New Weight
+  		{% endif %}
+  	{% endblock %}
+  </h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="weight">Weight</label>
+    <input name="weight" id="weight" type="number" step="0.1" class="input-field" value="{{ request.form['weight'] }}" required autofocus>
+
+    <label for="comment">Comment</label>
+    <input name="comment" id="comment" class="input-field" value="{{ request.form['comment'] }}">
+
+    <!-- Could make above a select field. -->
+    <!-- Probably a distinct amount of comments possible. -->
+
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}
